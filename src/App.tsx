@@ -16,7 +16,7 @@ import {ColorModeContextProvider} from "./contexts/color-mode";
 import {Header} from "./components";
 import {dataProvider} from "./providers/data-provider";
 import {TestRunsList} from "./pages/test-runs";
-
+import {TestSummary} from "./pages/test-summaries";
 
 function App() {
 
@@ -35,6 +35,10 @@ function App() {
                                     {
                                         name: "testruns",
                                         list: "/testruns",
+                                    },
+                                    {
+                                        name: "Test Summaries",
+                                        list: "/testsummaries",
                                     },
                                 ]}
                                 options={{
@@ -67,6 +71,9 @@ function App() {
                                         }/>
                                         <Route path="/testruns">
                                             <Route index element={<TestRunsList/>}/>
+                                        </Route>
+                                        <Route path="/testsummaries">
+                                            <Route index element={<TestSummary />} />
                                         </Route>
                                         <Route path="*" element={<ErrorComponent/>}/>
                                     </Route>

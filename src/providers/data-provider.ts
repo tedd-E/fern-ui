@@ -5,11 +5,11 @@ const API_URL = "http://localhost:8080/api";
 
 export const dataProvider: DataProvider = {
     getList: async ({ resource}) => {
-        const url = `${API_URL}/reports/${resource}`;
+        const url = `${API_URL}/reports/${resource}`;   //todo: localhost:8080/api/reports/projects
 
         const response = await axios.get(url);
         return {
-            data: response.data.testRuns,
+            data: response.data.testRuns,   //todo: need to generalize this?
             total: response.data.total,
         };
     },

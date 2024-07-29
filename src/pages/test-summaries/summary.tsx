@@ -9,19 +9,14 @@ export const TestSummary = () => {
         resource: "projects/",
     });
     return (
-        <List
-            title={"Test Summaries"}
-        >
-           <List
-               title={"Projects"}
-               >
-               <Table {...tableProps} rowKey="project" >
-                   <Table.Column title="Project Name"
-                                 dataIndex="project"/>
-               </Table>
+       <List
+           title={"Projects"}
+           >
+            //TODO: populate with list of unique projects (should be paginated)
+           //TODO: under each project, populate it with the green/red grid thing
 
-           </List>
-        </List>
+       </List>
+
     );
 };
 export default TestSummary;

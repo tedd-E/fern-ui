@@ -1,22 +1,42 @@
 import React from 'react';
-import {List, useTable} from "@refinedev/antd";
-import {Button, Col, Row, Space, Table, Tag} from "antd";
-import {HttpError} from "@refinedev/core";
-import {IProjects} from "./interfaces";
+import { List, useTable } from "@refinedev/antd";
+import { Table } from "antd";
+import { HttpError } from "@refinedev/core";
+
+interface IProject {
+    project: string;
+}
 
 export const TestSummary = () => {
-    const {tableProps} = useTable<IProjects, HttpError>({
+    const { tableProps } = useTable<IProject, HttpError>({
         resource: "projects/",
+
     });
+
+    const projectData = tableProps.dataSource?.map(project => ({
+        project,
+    })) || [];
+
+    const columns = [
+        {
+            title: "Project",
+            dataIndex: "project",
+            key: "project",
+        },
+    ];
+
     return (
-       <List
-           title={"Projects"}
-           >
-            //TODO: populate with list of unique projects (should be paginated)
-           //TODO: under each project, populate it with the green/red grid thing
+        <List title={"Projects"}>
+            <Table
+                dataSource={projectData}
+                columns={columns}
+                rowKey="project"
+            />
+                <Table.Column title="Project Name"
+                    dataIndex="project"/>
 
-       </List>
-
+        </List>
     );
 };
+
 export default TestSummary;

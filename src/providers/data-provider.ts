@@ -4,14 +4,27 @@ import axios from "axios";
 const API_URL = "http://localhost:8080/api";
 
 export const dataProvider: DataProvider = {
-    getList: async ({ resource}) => {
-        const url = `${API_URL}/reports/${resource}`;   //todo: localhost:8080/api/reports/projects
+    getList: async ({ resource}) => { //todo: need to generalize this?
+        const url = `${API_URL}/reports/${resource}`;
 
         const response = await axios.get(url);
+        if (resource == "testruns/") {
+            return {
+                data: response.data.testRuns,
+                total: response.data.total,
+            };
+        }
+        else if (resource == "projects/") {
+            return {
+                data: response.data.projects,
+                total: response.data.total,
+            };
+        }
+
         return {
-            data: response.data.testRuns,   //todo: need to generalize this?
-            total: response.data.total,
-        };
+            data: [],
+            total: 0
+        }
     },
 
     getOne: async ({resource, id}) => {
